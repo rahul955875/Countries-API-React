@@ -1,11 +1,21 @@
-import allCountrisData from "../allCountrisData";
+// import allCountrisData from "../allCountrisData";
+import { useEffect, useState } from "react";
 import CountryCard from "./CountryCard";
+
+
 function CountriesList({ query }) {
-  // console.log(query)
+  const[allCountrisData,setallcountriesData] =useState([])
+  useEffect(() => {
+    fetch("https://restcountries.com/v3.1/all")
+    .then((res) => res.json())
+    .then((data) => setallcountriesData(data))
+    .catch(() =>{ console.log("this is an error")});
+  },[]);
+  
   return (
     <div
       className="countriesList row row-cols-lg-4 m-auto
-p-2 g-5"
+p-4 g-5"
     >
       {allCountrisData
         .filter((country) => country.name.common.toLowerCase().includes(query))
