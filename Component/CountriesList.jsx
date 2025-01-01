@@ -9,7 +9,7 @@ function CountriesList({ query }) {
     fetch("https://restcountries.com/v3.1/all")
     .then((res) => res.json())
     .then((data) => setallcountriesData(data))
-    .catch(() =>{ console.log("this is an error")});
+    .catch((e) =>{ console.log("this is an error" + e)});
   },[]);
   
   return (
