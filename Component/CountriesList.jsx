@@ -1,4 +1,4 @@
-// import allCountrisData from "../allCountrisData";
+import allCountrisDataFromLocal from "../allCountrisData";
 import { useEffect, useState } from "react";
 import CountryCard from "./CountryCard";
 
@@ -9,13 +9,16 @@ function CountriesList({ query }) {
     fetch("https://restcountries.com/v3.1/all")
     .then((res) => res.json())
     .then((data) => setallcountriesData(data))
-    .catch((e) =>{ console.log("this is an error" + e)});
+    .catch((e) =>{ 
+      setallcountriesData(allCountrisDataFromLocal)
+      console.log('this data is form local')
+    });
   },[]);
   
-  return (
+  return  (
     <div
       className="countriesList row row-cols-lg-4 m-auto
-p-4 g-5"
+p-5 g-5"
     >
       {allCountrisData
         .filter((country) => country.name.common.toLowerCase().includes(query))

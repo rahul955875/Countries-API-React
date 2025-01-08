@@ -3,6 +3,7 @@ import App from "./App.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Header from "./Component/Header.jsx";
 import Home from "./Component/Home.jsx";
+import CountryDetail from "./Component/CountryDetail.jsx";
 
 const router = createBrowserRouter([
     {
@@ -15,8 +16,8 @@ const router = createBrowserRouter([
         element: <Home />
       },
         {
-        path:'/country',
-        element: <h1>This Country is not availble</h1>
+        path:'/:country',
+        element: <CountryDetail />
       }
       ,]
     },
