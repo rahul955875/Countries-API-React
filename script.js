@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     {
       path: "/",
       element: <App />,
-      errorElement:<h1>404 not found try other country</h1>,
+      // errorElement:<h1>404 not found try other country</h1>,
       children: [
         {
         path:'/',

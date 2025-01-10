@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 
 import "./CountryDetail.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function CountryDetail() {
   const countryName = useParams().country;
   const [notFound, setNotFound] = useState(false);
 
   const [countryData, setCountryData] = useState(null);
-
   useEffect(() => {
     fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
       .then((res) => res.json())
       .then(([data]) => {
-        console.log(data);
+        // console.log(data.borders);
         setCountryData({
           name: data.name.common,
           nativeName: Object.values(data.name.nativeName)[0].common,
@@ -27,22 +26,30 @@ export default function CountryDetail() {
           currencies: Object.values(data.currencies)
             .map((currency) => currency.name)
             .join(", "),
+          borders: [],
         });
+        Promise.all(
+          data.borders?.map((border) => {
+            return fetch(`https://restcountries.com/v3.1/alpha/${border}`)
+              .then((res) => res.json())
+              .then(([borderCountry]) => borderCountry.name.common);
+          }) || []
+        ).then((cBorders)=>setCountryData((prev)=> ({...prev , borders : cBorders})))
       })
       .catch((err) => {
         console.log("this error indicates that its faild to fetch data" + err);
-      setNotFound(true)
+        setNotFound(true);
       });
-  }, []);
-  if(notFound){
-    return <div>No country found for this name</div>
+  }, [countryName]);
+  if (notFound) {
+    return <div>No country found for this name</div>;
   }
   return countryData === null ? (
     "loading..."
   ) : (
     <main>
       <div className="country-details-container">
-        <span className="back-button" onClick={()=>history.back()}>
+        <span className="back-button" onClick={() => history.back()}>
           <i className="fa-solid fa-arrow-left"></i>&nbsp; Back
         </span>
         <div className="country-details">
@@ -85,9 +92,23 @@ export default function CountryDetail() {
                 <span className="languages"></span>
               </p>
             </div>
-            <div className="border-countries">
-              <b>Border Countries: </b>&nbsp;
-            </div>
+            {countryData.borders.length !== 0 && (
+              <div className="border-countries">
+                <b>
+                  Border Countries:{" "}
+                  {countryData.borders.map((border) => (
+                    <Link
+                      key={border}
+                      className="m-2 d-inline-block"
+                      to={`/${border}`}
+                    >
+                      {border}
+                    </Link>
+                  ))}{" "}
+                </b>
+                &nbsp;
+              </div>
+            )}
           </div>
         </div>
       </div>
