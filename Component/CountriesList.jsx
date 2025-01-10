@@ -1,23 +1,25 @@
 import allCountrisDataFromLocal from "../allCountrisData";
 import { useEffect, useState } from "react";
 import CountryCard from "./CountryCard";
-
+import CountriesListSimmerEff from "./CountriesListSimmerEff";
 
 function CountriesList({ query }) {
-  const[allCountrisData,setallcountriesData] =useState([])
+  const [allCountrisData, setallcountriesData] = useState([]);
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
-    .then((res) => res.json())
-    .then((data) => {setallcountriesData(data)
-      console.log('this is fetch form server')
-    })
-    .catch((e) =>{ 
-      setallcountriesData(allCountrisDataFromLocal)
-      console.log('this data is form local')
-    });
-  },[]);
-  
-  return  (
+      .then((res) => res.json())
+      .then((data) => {
+        setallcountriesData(data);
+        console.log("this is fetch form server");
+      })
+      .catch((e) => {
+        setallcountriesData(allCountrisDataFromLocal);
+        console.log("this data is form local");
+      });
+  }, []);
+
+  return (
+    !allCountrisData.length ? <CountriesListSimmerEff /> :
     <div
       className="countriesList row row-cols-lg-4 m-auto
 p-5 g-5"
