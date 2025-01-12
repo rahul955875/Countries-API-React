@@ -1,0 +1,33 @@
+.shimmerImg{
+    background-color:#ccc ;
+    width: 40%;
+    height: 300px;
+
+}
+
+
+.shimmerImg{
+    position: relative;
+    overflow: hidden;
+}
+.shimmerImg::after{
+content: '';
+position: absolute;
+top:0% ;
+left: 0;
+width: 350%;
+background-color:#ccc;
+border: 3px solid rgb(231, 226, 226);
+filter: brightness(110%);
+height: 20px;
+transform: translate(-50%,-50%);
+rotate: -50deg;
+/* top: 290%; */
+animation: shimmer-effect 1.5s ease infinite ;
+}
+
+@keyframes shimmer-effect {
+ to{
+    top: 290%;
+ }   
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import "./CountryDetail.css";
 import { Link, useParams } from "react-router-dom";
+import CountryDetailSimmer from "./CountryDetailSimmer";
 
 export default function CountryDetail() {
   const countryName = useParams().country;
@@ -45,7 +46,8 @@ export default function CountryDetail() {
     return <div>No country found for this name</div>;
   }
   return countryData === null ? (
-    "loading..."
+    // "loading..."
+    <CountryDetailSimmer/>
   ) : (
     <main>
       <div className="country-details-container">
