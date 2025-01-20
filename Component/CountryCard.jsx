@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-function CountryCard({name,flag,population,capital,region}) {
+function CountryCard({name,flag,population,capital,region,data}) {
   return (
-    <Link to={`/${name}`} className="country-card col justify-self-center">
+    <Link to={`/${name}`} className="country-card col justify-self-center" state={data}>
       <div className="card shadow-lg">
         <img src={flag} className="card-img-top shadow img-fluid" alt="" style={{width:'100%',height:'200px',objectFit:'cover'}}/>
         <div className="card-body">

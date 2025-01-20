@@ -6,14 +6,21 @@ import CountriesListSimmerEff from "./CountriesListSimmerEff";
 function CountriesList({ query }) {
   const [allCountrisData, setallcountriesData] = useState([]);
   useEffect(() => {
+    if(JSON.parse(localStorage.getItem('countryData'))){
+      setallcountriesData(JSON.parse(localStorage.getItem('countryData')))
+      console.log('this form local storage')
+    return  
+    }
     fetch("https://restcountries.com/v3.1/all")
       .then((res) => res.json())
       .then((data) => {
         setallcountriesData(data);
+        
         console.log("this is fetch form server");
       })
       .catch((e) => {
         setallcountriesData(allCountrisDataFromLocal);
+        localStorage.setItem('countryData',JSON.stringify(allCountrisDataFromLocal))
         console.log("this data is form local");
       });
   }, []);
@@ -35,6 +42,7 @@ p-5 g-5"
               capital={country.capital?.[0]}
               region={country.region}
               key={country.name.common}
+              data={country}
             />
           );
         })}

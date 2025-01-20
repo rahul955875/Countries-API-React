@@ -7,8 +7,8 @@ function CountriesListSimmerEff() {
         className="countriesList row row-cols-lg-4 m-auto
         p-5 g-5"
       >
-        {Array.from({ length: 16 }).map((el) => (
-          <div className="col " >
+        {Array.from({ length: 16 }).map((el,i) => (
+          <div className="col "key={i} >
             <div
               className="card shadow shimmer-card"
               style={{ height: 350, background: "#ccc", minWidth: 250 }}
