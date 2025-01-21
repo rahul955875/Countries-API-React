@@ -3,7 +3,7 @@
 function FilterRegion() {
   return (
     <div>
-      <select name="filter-region" className="px-3 py-1 rounded fs-5 border-primary shadow ">
+      <select name="filter-region" className="px-3 py-2 rounded fs-6  border-primary shadow bg-color text-color filter-region-field">
           <option value="Select-region">Filter by region</option>
           <option value="Asia">Asia</option>
           <option value="South America">South America</option>

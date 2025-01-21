@@ -8,7 +8,7 @@ function CountriesList({ query }) {
   useEffect(() => {
     if(JSON.parse(localStorage.getItem('countryData'))){
       setallcountriesData(JSON.parse(localStorage.getItem('countryData')))
-      console.log('this form local storage')
+      console.log('this data is form local storage')
     return  
     }
     fetch("https://restcountries.com/v3.1/all")
@@ -28,8 +28,8 @@ function CountriesList({ query }) {
   return (
     !allCountrisData.length ? <CountriesListSimmerEff /> :
     <div
-      className="countriesList row row-cols-lg-4 m-auto
-p-5 g-5"
+      className="countriesList row row-cols-md-2 row-cols-1 row-cols-lg-4 m-auto
+p-lg-5 p-3 g-5"
     >
       {allCountrisData
         .filter((country) => country.name.common.toLowerCase().includes(query))

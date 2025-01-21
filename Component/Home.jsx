@@ -10,7 +10,7 @@ function Home() {
   // console.log(query)
   return (
     <>
-      <div className="search-container container d-flex justify-content-between p-3 align-items-center mt-4">
+      <div className="search-container container  d-flex justify-content-between p-2 p-md-3 align-items-center mt-4">
         <Search setQuery={setQuery} />
         <FilterRegion />
       </div>
