@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function Header() {
   const [isDark, setisDark] = useState(false)
-  console.log(isDark)
+  // console.log(isDark)
   if(isDark){
     document.body.classList.add('dark')
   }else{

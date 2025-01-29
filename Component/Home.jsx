@@ -12,7 +12,7 @@ function Home() {
     <>
       <div className="search-container container  d-flex justify-content-between p-2 p-md-3 align-items-center mt-4">
         <Search setQuery={setQuery} />
-        <FilterRegion />
+        <FilterRegion setQuery={setQuery} />
       </div>
       <main className="w-100">
         <CountriesList query={query} />

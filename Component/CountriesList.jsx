@@ -32,7 +32,7 @@ function CountriesList({ query }) {
 p-lg-5 p-3 g-5"
     >
       {allCountrisData
-        .filter((country) => country.name.common.toLowerCase().includes(query))
+        .filter((country) => country.name.common.toLowerCase().includes(query) || country.region.toLowerCase().includes(query) )
         .map((country) => {
           return (
             <CountryCard
