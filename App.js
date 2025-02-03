@@ -1,14 +1,16 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./Component/Header";
 import { Outlet } from "react-router-dom";
-import './App.css'
+import "./App.css";
+import ThemeContext from "./Contexts/ThemeContext";
 function App() {
   
+
   return (
-    <>
-      <Header />
-      <Outlet />
-    </>
+    <ThemeContext>
+      <Header  />
+      <Outlet  />
+    </ThemeContext>
   );
 }
 

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import "./CountryDetail.css";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation,useParams } from "react-router-dom";
 import CountryDetailSimmer from "./CountryDetailSimmer";
+import  { createThemeContext } from "../Contexts/ThemeContext";
 
 export default function CountryDetail() {
+  const [isDark] = useContext(createThemeContext)
   const countryName = useParams().country;
   const [notFound, setNotFound] = useState(false);
 
@@ -60,9 +62,9 @@ export default function CountryDetail() {
     // "loading..."
     <CountryDetailSimmer/>
   ) : (
-    <main>
+    <main className={`${isDark ? 'dark' : ''}`}>
       <div className="country-details-container">
-        <span className="back-button" onClick={() => history.back()}>
+        <span className="shadow back-button" onClick={() => history.back()}>
           <i className="fa-solid fa-arrow-left"></i>&nbsp; Back
         </span>
         <div className="country-details">

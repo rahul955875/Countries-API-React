@@ -1,21 +1,29 @@
 
-body{
---text-color : black;
---bg-color: white;
---bs-box-shadow-lg: 0 1rem 3rem #0000002d;
---bs-box-shadow: 0 .5rem 1rem #00000026;
---bs-card-color2:black ;
-color: var(--text-color);
-}
-body.dark{
-    background-color:black ;
+main.dark{
     --text-color : white;
-    color: var(--text-color);
     --bg-color : rgb(23,22,22);
     --bs-box-shadow-lg: 0 1rem 3rem #ffffff2d;
     --bs-box-shadow: 0 .5rem 1rem #ffffff33;
     --bs-card-color2: white;
 }
+header.dark{
+    --text-color : white;
+    --bg-color : rgb(30, 22, 40);
+}
+header{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+main, header{
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+main{
+    
+    padding: 24px;    
+}
+
 a{
     color: var(--text-color);
 }
@@ -36,6 +44,7 @@ a{
     
     box-shadow:var(--bs-box-shadow) ;
 }
+
 input::placeholder{
     color: var(--text-color);
 }
