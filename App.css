@@ -20,7 +20,7 @@ main, header{
     background-color: var(--bg-color);
 }
 main{
-    
+    min-height: 100vh;
     padding: 24px;    
 }
 

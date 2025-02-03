@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 
 import "./CountryDetail.css";
 import { Link, useLocation,useParams } from "react-router-dom";
 import CountryDetailSimmer from "./CountryDetailSimmer";
-import  { createThemeContext } from "../Contexts/ThemeContext";
+import { useTheme } from "../hooks/useTheme";
+
 
 export default function CountryDetail() {
-  const [isDark] = useContext(createThemeContext)
+  const [isDark] = useTheme()
   const countryName = useParams().country;
   const [notFound, setNotFound] = useState(false);
 
@@ -16,15 +17,15 @@ export default function CountryDetail() {
   const updateData=(data)=>{
     setCountryData({
       name: data.name.common,
-      nativeName: Object.values(data.name.nativeName)[0].common,
+      nativeName: Object.values(data.name.nativeName || {})[0]?.common,
       population: data.population,
       region: data.region,
       subregion: data.subregion,
       capital: data.capital,
       flag: data.flags.svg,
       tld: data.tld,
-      languages: Object.values(data.languages).join(", "),
-      currencies: Object.values(data.currencies)
+      languages: Object.values(data.languages || []).join(", "),
+      currencies: Object.values(data.currencies || [])
         .map((currency) => currency.name)
         .join(", "),
       borders: [],
@@ -91,7 +92,7 @@ export default function CountryDetail() {
                 <span className="sub-region"></span>
               </p>
               <p>
-                <b>Capital: {countryData.capital.join(", ")}</b>
+                <b>Capital: {countryData.capital?.join(", ")}</b>
                 <span className="capital"></span>
               </p>
               <p>
@@ -114,7 +115,7 @@ export default function CountryDetail() {
                   {countryData.borders.map((border) => (
                     <Link
                       key={border}
-                      className="m-2 d-inline-block"
+                      className="m-2 d-inline-block shadow"
                       to={`/${border}`}
                     >
                       {border}

@@ -1,9 +1,9 @@
-import { useContext } from "react"
-import  { createThemeContext } from "../Contexts/ThemeContext"
+
+import { useTheme } from "../hooks/useTheme"
 
 
 function Header() {
-  const [isDark, setisDark] = useContext(createThemeContext)
+  const [isDark, setisDark] = useTheme()
   return (
     <header className={` shadow bg-color w-100 ${isDark ? 'dark' : ''}`}>
         <div className="container d-flex align-items-center justify-content-between py-3">

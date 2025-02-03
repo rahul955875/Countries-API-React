@@ -2,13 +2,14 @@
 import Search from "./Search";
 import FilterRegion from "./FilterRegion";
 import CountriesList from "./CountriesList";
-import { useContext, useState } from "react";
-import  { createThemeContext } from "../Contexts/ThemeContext";
+import {useState } from "react";
+import { useTheme } from "../hooks/useTheme";
+
 
 
 function Home() {
     let [query,setQuery] = useState('')
-    const [isDark] = useContext(createThemeContext)
+    const [isDark] = useTheme()
   // console.log(query)
   return (
     <>
